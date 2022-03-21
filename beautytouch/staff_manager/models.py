@@ -7,16 +7,19 @@ import bcrypt
 
 class EmployeeManager(models.Manager):
     def validate_login(self, user_input):
+        errors = {}
         try:
             emp = Employee.objects.get(user_name=user_input['user_name'])
         except ObjectDoesNotExist:
-            return 0
             #user does not exist
+            errors['user_name'] = "User Does Not Exists. Check User Name."
+            return 0, errors
         if bcrypt.checkpw(user_input['password'].encode(), emp.password.encode()):
-            return emp
+            return emp, errors
         else:
             # password did not match
-            return 0
+            errors['password'] = "Password Did Not Match."
+            return 0, errors
 
 class Employee(models.Model):
     first_name = models.CharField(max_length=25)

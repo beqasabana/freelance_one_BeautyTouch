@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/staff_dashboard.css' %}">
+    <script defer src="{% static 'js/staff_dashboard.js' %}"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <title>SignIn</title>
+</head>
+<body class="ps-5 pe-5 pt-4">
+    <div class="">
+        <header class="row">
+            <div class="col-4 border border-dark">
+                <h3>beauty touch</h3>
+                <p>Staff</p>
+            </div>
+            <div class="col-8 d-flex border border-dark">
+                <div class="col text-center">
+                    <a href="/staff/dashboard">Home</a>
+                </div>
+                <div class="col text-center">
+                    <a href="">Points</a>
+                </div>
+                <div class="col text-center">
+                    <a href="">Daily Report</a>
+                </div>
+                <div class="col text-center">
+                    <a href="">Settings</a>
+                </div>
+                {% if logged_user.manager %}
+                    <div class="col text-center">
+                        <a href="">Add Employee</a>
+                    </div>
+                {% endif %}
+                <div class="col text-center">
+                    <a href="/staff/logout">Log Out</a>
+                </div>
+            </div>
+        </header>
+        <main class="row">
+            <div class="col-4 border border-dark">
+                <div class="row border border-dark">
+                    <p>{{ logged_user.first_name }} {{ logged_user.last_name }}</p>
+                </div>
+                <div class="row border border-dark">
+                    <p>date</p>
+                    <button>Clock In</button>
+                    <a href="">Forgot to Clock Out Yesterday?</a>
+                </div>
+                <div class="row border border-dark">
+                    <p>My Points/hours</p>
+                    <p># of my Points/Hours</p>
+                    <p>Total organization Points/Hours</p>
+                    <p># of organization Points</p>
+                    <p>Quote of the Day</p>
+                </div>
+            </div>
+            <div class="col-8 border border-dark">
+                <h3>Clock Records</h3>
+                <p>only date for non manager employee</p>
+                <div class="d-flex">
+                    <select name="" id="">
+                        <option value="">week</option>
+                        <option value="">All Records</option>
+                    </select>
+                    {% if logged_user.manager %}
+                        <select name="" id="">
+                            <option value="">Employee names for managers</option>
+                        </select>
+                    {% endif %}
+                </div>
+                <table>
+                    <tr>
+                        <th class="border border-dark">Date</th>
+                        <th class="border border-dark">Clock-In</th>
+                        <th class="border border-dark">Clock-Out</th>
+                        <th class="border border-dark">Time Worked</th>
+                        <th class="border border-dark">Task Description</th>
+                    </tr>
+                    <tr>
+                        <td class="border border-dark">test date</td>
+                        <td class="border border-dark">test time</td>
+                        <td class="border border-dark">test time</td>
+                        <td class="border border-dark">test time</td>
+                        <td class="border border-dark">test task</td>
+                    </tr>
+                </table>
+            </div>
+        </main>
+    </div>
+</body>
+</html>

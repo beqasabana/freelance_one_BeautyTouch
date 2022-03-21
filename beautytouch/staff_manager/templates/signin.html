@@ -12,6 +12,13 @@
 <body class="text-center">
     <main class="container">
         <div class="row">
+            {% if messages %}
+                {% for message in messages %}
+                    <p{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</p>
+                {% endfor %}
+            {% endif %}
+        </div>
+        <div class="row">
             <div class="col form-signin d-flex justify-content-center">
                 <form class="w-50" action="/staff/login" method="post">
                     {% csrf_token %}
